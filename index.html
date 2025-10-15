@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi's Dungeon - Ultimate Edition</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    
+    <!-- Stacks.js Libraries -->
+    <script src="https://unpkg.com/@stacks/connect@8.2.0/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@stacks/transactions@7.1.0/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@stacks/network@7.1.0/dist/index.umd.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Game Scripts (order matters!) -->
+    <script src="js/config.js"></script>
+    <script src="js/gameState.js"></script>
+    <script src="js/soundManager.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/upgrades.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/entities.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/phaser-scenes.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Wallet Section -->
+    <div id="wallet-section">
+        <button id="connect-wallet">Connect Wallet</button>
+        <div id="wallet-info" style="display: none;"></div>
+    </div>
+    
+    <!-- Game UI Overlay -->
+    <div id="ui-overlay" class="ui-panel">
+        <div>⛏️ HashPower: <span id="hashpower">0</span></div>
+        <div>🎯 Score: <span id="score">0</span></div>
+        <div>❤️ Health: <span id="health">100</span>/<span id="maxhealth">100</span></div>
+        <div>📊 Level: <span id="level">1</span></div>
+        <div>🏆 Kills: <span id="kills">0</span></div>
+        <div style="margin-top: 10px; font-size: 8px; color: #ffff00;">Press ESC - Pause</div>
+    </div>
+    
+    <!-- Title Screen -->
+    <div id="title-screen">
+        <h1>⛏️ SATOSHI'S DUNGEON ⛏️</h1>
+        <p class="subtitle">Ultimate Bitcoin Mining Adventure</p>
+        <div id="instructions">
+            <p><strong>🎮 CONTROLS:</strong></p>
+            <p>⬆️⬇️⬅️➡️ Move | ⚡ SPACE - Mine | 🎯 Click - Attack | ESC - Pause</p>
+            <br>
+            <p><strong>💎 ABOUT:</strong></p>
+            <p>You are Satoshi, defending the Bitcoin network from attacks!</p>
+            <p>Mine blocks to generate HashPower, then use it to defeat enemies.</p>
+            <p>Collect power-ups, unlock upgrades, and survive as long as you can!</p>
+            <br>
+            <p><strong>🎯 FEATURES:</strong></p>
+            <p>✅ 6 Enemy Types | ✅ Boss Battles | ✅ Power-Ups</p>
+            <p>✅ Upgrade System | ✅ Perks | ✅ Achievements</p>
+            <p>✅ Blockchain Leaderboard | ✅ Educational Content</p>
+        </div>
+        <button id="start-game" class="btn-large">START GAME</button>
+        <button id="show-achievements" class="btn-secondary">Achievements</button>
+    </div>
+    
+    <!-- Modals -->
+    <div id="upgrade-modal" class="modal">
+        <h2>⚡ UPGRADE SHOP ⚡</h2>
+        <p class="score-display">Score: <span id="upgrade-score">0</span></p>
+        <div class="modal-content" id="upgrade-list"></div>
+        <button onclick="closeUpgradeShop()" class="btn-full">Close Shop</button>
+    </div>
+    
+    <div id="perk-modal" class="modal">
+        <h2>🎁 CHOOSE A PERK 🎁</h2>
+        <p class="modal-subtitle">Select one permanent upgrade for this run:</p>
+        <div class="modal-content" id="perk-list"></div>
+    </div>
+    
+    <div id="achievement-modal" class="modal">
+        <h2>🏆 ACHIEVEMENTS 🏆</h2>
+        <div class="modal-content" id="achievement-list"></div>
+        <button onclick="document.getElementById('achievement-modal').style.display='none'" class="btn-full">Close</button>
+    </div>
+    
+    <!-- Game Container -->
+    <div id="game-container"></div>
+</body>
+</html>
